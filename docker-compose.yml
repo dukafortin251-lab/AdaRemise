@@ -6,11 +6,11 @@ services:
     container_name: laremise_db
     restart: always
     environment:
-      POSTGRES_USER: SDM
-      POSTGRES_PASSWORD: SDM
+      POSTGRES_USER: SDN
+      POSTGRES_PASSWORD: SDN
       POSTGRES_DB: laremise
     ports:
-      - "5432:5432"
+      - "5460:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
