@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: SDN
       POSTGRES_DB: laremise
     ports:
-      - "5460:5432"
+      - "5461:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 

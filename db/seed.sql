@@ -1,13 +1,3 @@
--- =====================================================================
---  Adatabase — La Remise
---  seed.sql — jeu de données de référence
---
---  Les dates sont relatives à CURRENT_DATE : les requêtes de queries.sql
---  renvoient les mêmes résultats quelle que soit la date d'exécution.
---  Insertions dans l'ordre de l'arbre de dépendances.
--- =====================================================================
-
--- Niveau 0 ------------------------------------------------------------
 
 INSERT INTO categorie (libelle) VALUES
   ('Mobilier'),
