@@ -1,9 +1,3 @@
--- =====================================================================
---  Adatabase — La Remise
---  migration_down.sql — suppression des tables, liaisons et types
---
---  Ordre inverse de l'arbre de dépendances (Niveau 3 → Niveau 0 → Types)
--- =====================================================================
 
 -- Niveau 3
 DROP TABLE IF EXISTS reparation;
