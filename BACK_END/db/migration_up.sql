@@ -64,10 +64,6 @@ CREATE TABLE benevole_competence (               -- R3 — RG11
 );
 
 
--- ---------------------------------------------------------------------
---  Niveau 2 — dépend des niveaux 0 et 1
--- ---------------------------------------------------------------------
-
 CREATE TABLE objet (
   id               SERIAL PRIMARY KEY,
   libelle          VARCHAR(255) NOT NULL,
