@@ -1,8 +1,13 @@
 {
+  "scripts": {
+    "dev": "nodemon ./server/index.js"
+  },
+  "type": "module",
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "pg": "^8.23.0",
     "pq": "^0.0.3"
   },
   "devDependencies": {
