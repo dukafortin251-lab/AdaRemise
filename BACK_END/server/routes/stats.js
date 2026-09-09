@@ -13,14 +13,9 @@ router.get("/", async (req, res) => {
       `SELECT COALESCE(SUM(poids_kg), 0) AS poids_total_recu FROM objet`,
     );
 
-    const { rows: detourneRows } = await pool.query(
-      `SELECT COALESCE(SUM(poids_kg), 0) AS poids_detourne FROM objet WHERE statut IN ('vendu', 'en_rayon', 'recycle')`,
-    );
-
     return res.json({
       objets_par_statut: objetsParStatut,
       poids_total_recu: totalRows[0].poids_total_recu,
-      poids_detourne: detourneRows[0].poids_detourne,
     });
   } catch (err) {
     console.error("Erreur lors de la récupération des indicateurs :", err);

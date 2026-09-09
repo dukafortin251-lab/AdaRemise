@@ -42,10 +42,15 @@ Content-Type: application/json
 
 ###
 PATCH http://localhost:3000/api/objets/1/statut
+
 {
   "statut": "en_rayon",
-  "prix": 1000.00
-}
+  "prix": 1000.00,
+},
 
 ###
 GET http://localhost:3000/api/stats
+###
+
+
+GET http://localhost:3000/api/benevoles
