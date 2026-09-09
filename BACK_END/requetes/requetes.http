@@ -5,7 +5,7 @@ GET http://localhost:3000/api/categories
  
 ### Consulter un dépôt
 GET http://localhost:3000/api/depots/1
-
+   
 ###
 POST http://localhost:3000/api/personnes
 {
