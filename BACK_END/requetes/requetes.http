@@ -1,37 +1,37 @@
-GET http://localhost:3000/api/objets
+### 1. Récupérer toutes les personnes (donateurs)
+GET http://localhost:3000/api/personnes
+Content-Type: application/json
 
-###
-GET http://localhost:3000/api/categories
- 
-### Consulter un dépôt
-GET http://localhost:3000/api/depots/1
-   
-###
-POST http://localhost:3000/api/personnes
-{
-  "nom": "Martin",
-  "prenom": "Claire",
-  "telephone": "0612345678",
-  "adherente": true
-}
-
-###
+### 
+  
+### ajouter un dépots
 POST http://localhost:3000/api/depots
+Content-Type: application/json
+
 {
-  "date_depot": "2026-09-03",
-  "type": "boutique",
-  "personne_id": 1
+  "personne_id": 1,
+  "date_depot": "2026-09-09"
 }
+ 
+### 
 
+### 3. récupérer un dépôt par son ID 
+GET http://localhost:3000/api/depots/1
+Content-Type: application/json
 
-### Créer un objet dans un dépôt
+###
+
+###  route imbriqué
 POST http://localhost:3000/api/depots/1/objets
 Content-Type: application/json
 
 {
-  "libelle": "Vélo de course",
-  "poids_kg": 10.5,
+  "categorie_id": 1,
+  "libelle": "Vélo de ville",
+  "poids_kg": 12.5,
   "etat_arrivee": "bon_etat",
+  "statut": "arrive"
+}
   "statut": "en_rayon",
   "prix": 85.00,
   "date_mise_rayon": "2026-08-31",

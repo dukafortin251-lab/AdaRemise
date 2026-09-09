@@ -1,24 +1,31 @@
 import express from "express";
-import {pool} from "../db.js";
+import { pool } from "../db.js";
 
 const router = express.Router();
 
-router.post("/", async (req, res) => {
-  const { nom, prenom, telephone, adherente } = req.body;
-
-  if (!nom || !prenom) {
-    return res.status(400).json({ erreur: "Champs obligatoires manquants" });
+router.get("/", async (req, res) => {
+  try {
+    const { rows } = await pool.query("SELECT * FROM personne ORDER BY nom ASC");
+    return res.status(200).json(rows);
+  } catch (err) {
+    console.error("Erreur lors de la récupération des personnes :", err);
+    return res.status(500).json({ erreur: "Erreur interne du serveur" });
   }
+});
+ 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
 
   try {
-    const { rows } = await pool.query(
-      `INSERT INTO personne (nom, prenom, telephone, adherente) VALUES ($1, $2, $3, COALESCE($4, false)) RETURNING *`,
-      [nom, prenom, telephone, adherente]
-    );
+    const { rows } = await pool.query("SELECT * FROM personne WHERE id = $1", [id]);
 
-    return res.status(201).json(rows[0]);
+    if (rows.length === 0) {
+      return res.status(404).json({ erreur: "Personne non trouvée" });
+    }
+
+    return res.status(200).json(rows[0]);
   } catch (err) {
-    console.error("Erreur lors de la création de la personne :", err);
+    console.error("Erreur lors de la récupération de la personne :", err);
     return res.status(500).json({ erreur: "Erreur interne du serveur" });
   }
 });
