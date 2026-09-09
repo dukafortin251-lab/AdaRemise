@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "dev": "nodemon server/index.js"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.14"
-  }
-}
