@@ -4,18 +4,20 @@ import { pool } from "../db.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  // récupère les filtres depuis la query string de l'URL (undefined si absents)
   const { statut, categorie_id } = req.query;
 
   try {
     const { rows } = await pool.query(
-      `SELECT  objet.libelle, objet.poids_kg, objet.etat_arrivee, objet.statut, objet.prix, objet.date_mise_rayon, objet.categorie_id, objet.depot_id, objet.vente_id, objet.prix_paye, categorie.libelle AS categorie 
+      `SELECT objet.id, objet.libelle, objet.poids_kg,objet.etat_arrivee, 
+              objet.statut, objet.prix, objet.date_mise_rayon, objet.categorie_id, 
+              objet.depot_id, objet.vente_id, objet.prix_paye, 
+              categorie.libelle AS categorie 
       FROM objet 
-      JOIN categorie ON categorie.id = objet.categorie_id  -- relie chaque objet à sa catégorie
-      WHERE objet.statut = COALESCE($1, objet.statut)               -- si $1 est null, la condition devient toujours vraie (pas de filtre)
-      AND objet.categorie_id = COALESCE($2, objet.categorie_id)     -- même principe pour le deuxième filtre
+      JOIN categorie ON categorie.id = objet.categorie_id
+      WHERE ($1::text IS NULL OR objet.statut::text = $1)
+      AND ($2::int IS NULL OR objet.categorie_id = $2)
       ORDER BY objet.id`,
-      [statut ?? null, categorie_id ?? null],
+      [statut || null, categorie_id || null]
     );
 
     res.json(rows);
@@ -67,7 +69,8 @@ router.patch("/:id/statut", async (req, res) => {
       [objetId, statut, prix ?? null],
     );
 
-    if (rows.length === 0) return res.status(404).json({ erreur: "Introuvable" });
+    if (rows.length === 0)
+      return res.status(404).json({ erreur: "Introuvable" });
 
     return res.json(rows[0]);
   } catch (err) {
