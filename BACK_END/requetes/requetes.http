@@ -1,0 +1,51 @@
+GET http://localhost:3000/api/objets
+
+###
+GET http://localhost:3000/api/categories
+
+### Consulter un dépôt
+GET http://localhost:3000/api/depots/1
+
+###
+POST http://localhost:3000/api/personnes
+{
+  "nom": "Martin",
+  "prenom": "Claire",
+  "telephone": "0612345678",
+  "adherente": true
+}
+
+###
+POST http://localhost:3000/api/depots
+{
+  "date_depot": "2026-09-03",
+  "type": "boutique",
+  "personne_id": 1
+}
+
+
+### Créer un objet dans un dépôt
+POST http://localhost:3000/api/depots/1/objets
+Content-Type: application/json
+
+{
+  "libelle": "Vélo de course",
+  "poids_kg": 10.5,
+  "etat_arrivee": "bon_etat",
+  "statut": "en_rayon",
+  "prix": 85.00,
+  "date_mise_rayon": "2026-08-31",
+  "categorie_id": 2,
+  "vente_id": null,
+  "prix_paye": 0.00
+}
+
+###
+PATCH http://localhost:3000/api/objets/1/statut
+{
+  "statut": "en_rayon",
+  "prix": 1000.00
+}
+
+###
+GET http://localhost:3000/api/stats
