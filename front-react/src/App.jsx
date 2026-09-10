@@ -1,19 +1,17 @@
 import { Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar.jsx'
 import Inventaire from './pages/Inventaire.jsx'
 import Benevoles from './pages/Benevoles.jsx'
 import TableauDeBord from './pages/TableauDeBord.jsx'
-import ListeDepots from './components/ListeDepots.jsx'
+import Depots from './pages/Depots.jsx'
 import './App.css'
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <Routes>
         <Route path="/" element={<Benevoles />} />
         <Route path="/inventaire" element={<Inventaire />} />
-        <Route path="/depots" element={<ListeDepots />} />
+        <Route path="/depots" element={<Depots />} />
         <Route path="/tableau-de-bord" element={<TableauDeBord />} />
       </Routes>
     </div>

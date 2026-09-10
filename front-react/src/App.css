@@ -3,6 +3,11 @@
   width: auto;
 }
 
+.logoacceuil {
+  height: 150px;
+  width: auto;
+}
+
 .navbarlink {
   display: flex;
   gap: 20px;
