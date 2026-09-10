@@ -8,14 +8,14 @@ router.get("/", async (req, res) => {
 
   try {
     const { rows } = await pool.query(
-      `SELECT objet.id, objet.libelle, objet.poids_kg,objet.etat_arrivee, 
+      `SELECT objet.id, objet.libelle, objet.poids_kg, objet.etat_arrivee, 
               objet.statut, objet.prix, objet.date_mise_rayon, objet.categorie_id, 
               objet.depot_id, objet.vente_id, objet.prix_paye, 
               categorie.libelle AS categorie 
       FROM objet 
       JOIN categorie ON categorie.id = objet.categorie_id
-      WHERE ($1::text IS NULL OR objet.statut::text = $1)
-      AND ($2::int IS NULL OR objet.categorie_id = $2)
+      WHERE ($1::text IS NULL OR objet.statut::text = $1::text)
+      AND ($2::int IS NULL OR objet.categorie_id = $2::int)
       ORDER BY objet.id`,
       [statut || null, categorie_id || null]
     );
