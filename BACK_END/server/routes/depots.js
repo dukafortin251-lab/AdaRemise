@@ -3,6 +3,20 @@ import { pool } from "../db.js";
 
 const router = express.Router();
 
+router.get("/", async (req, res) => {
+  try {
+    const { rows } = await pool.query(
+      `SELECT depot.id, depot.date_depot, depot.type, personne.nom AS nom_donateur, personne.prenom 
+       FROM depot
+       JOIN personne ON personne.id = depot.personne_id
+       ORDER BY depot.date_depot DESC`
+    );
+    return res.json(rows);
+  } catch (err) {
+    console.error("Erreur lors de la récupération des dépôts :", err);
+    return res.status(500).json({ erreur: "Erreur interne du serveur" });
+  }
+});
 
 router.post("/", async (req, res) => {
   const { personne_id, date_depot, type } = req.body;
