@@ -1,12 +1,10 @@
-import FiltreObjet from '../components/FiltreObjet.jsx'
+import CategorieStatut from '../components/FiltreObjet.jsx';
 
-const Inventaire = () => {
+export default function Inventaire() {
   return (
-    <div>
+    <main>
       <h1>Inventaire</h1>
-      <FiltreObjet />
-    </div>
-  )
+      <CategorieStatut />
+    </main>
+  );
 }
-
-export default Inventaire;

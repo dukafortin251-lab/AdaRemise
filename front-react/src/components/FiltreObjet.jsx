@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "../App.css";
 
 export default function CategorieStatut() {
   const [objet, setObjets] = useState([]);
@@ -14,10 +15,24 @@ export default function CategorieStatut() {
       const reponse = await fetch(
         `http://localhost:3000/api/objets?${params.toString()}`,
       );
+
+      // 1. Bloque l'exécution si le serveur renvoie une erreur (ex: 500)
+      if (!reponse.ok) {
+        throw new Error(`Erreur HTTP: ${reponse.status}`);
+      }
+
       const donnees = await reponse.json();
-      setObjets(donnees);
+
+      // 2. Vérifie que les données sont bien un tableau avant de mettre à jour le state
+      if (Array.isArray(donnees)) {
+        setObjets(donnees);
+      } else {
+        console.error("Format inattendu reçu de l'API :", donnees);
+        setObjets([]); // Force un tableau vide
+      }
     } catch (err) {
       console.error("Erreur de récupération :", err);
+      setObjets([]); // Vide la liste en cas de crash du serveur pour éviter le blocage
     }
   };
 
@@ -54,15 +69,19 @@ export default function CategorieStatut() {
         <option value="8">Décoration</option>
       </select>
 
-      <ul>
-        {objet.map((objet) => (
-          <li key={objet.id}>
-            [ID: {objet.id}] {objet.libelle} -{" "}
-            {objet.prix ? `${objet.prix}€` : ""} - Statut:{" "}
-            {objet.statut}
-          </li>
+      <section className="cards-container">
+        {/* 3. Sécurisation avec le point d'interrogation (?.) avant le map */}
+        {objet?.map((item) => (
+          <article className="card" key={item.id}>
+            <header className="card-header">
+              <span className="card-id"># {item.id}</span>
+              <span className="badge">{item.statut}</span>
+            </header>
+            <h3 className="card-title">{item.libelle}</h3>
+            <p className="card-price">{item.prix ? `${item.prix}€` : ""}</p>
+          </article>
         ))}
-      </ul>
+      </section>
     </section>
   );
 }
