@@ -67,3 +67,23 @@
   font-size: 0.75rem;
   margin : 0;
 }
+
+.bouton-normal {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bouton-actif {
+  background-color: #5c728a; 
+  color: white;              
+  border: 1px solid #5c728a;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
