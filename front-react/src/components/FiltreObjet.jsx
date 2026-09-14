@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import "../App.css";
+import filtre from "../assets/filtre.png";
 
 export default function CategorieStatut() {
   const [objet, setObjets] = useState([]);
   const [categories, setCategories] = useState("");
   const [statut, setStatut] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fetchObjets = async () => {
     const params = new URLSearchParams();
@@ -16,23 +18,21 @@ export default function CategorieStatut() {
         `http://localhost:3000/api/objets?${params.toString()}`,
       );
 
-      // 1. Bloque l'exécution si le serveur renvoie une erreur (ex: 500)
       if (!reponse.ok) {
         throw new Error(`Erreur HTTP: ${reponse.status}`);
       }
 
       const donnees = await reponse.json();
 
-      // 2. Vérifie que les données sont bien un tableau avant de mettre à jour le state
       if (Array.isArray(donnees)) {
         setObjets(donnees);
       } else {
         console.error("Format inattendu reçu de l'API :", donnees);
-        setObjets([]); // Force un tableau vide
+        setObjets([]);
       }
     } catch (err) {
       console.error("Erreur de récupération :", err);
-      setObjets([]); // Vide la liste en cas de crash du serveur pour éviter le blocage
+      setObjets([]);
     }
   };
 
@@ -42,35 +42,153 @@ export default function CategorieStatut() {
 
   return (
     <section>
-      <select
-        value={statut}
-        onChange={(event) => setStatut(event.target.value)}
-      >
-        <option value="">Tous les statuts</option>
-        <option value="arrive">Arrivé</option>
-        <option value="en_reparation">En réparation</option>
-        <option value="en_rayon">En rayon</option>
-        <option value="vendu">Vendu</option>
-        <option value="recycle">Recyclé</option>
-      </select>
+      <button className="bouton-filtre" onClick={() => setIsModalOpen(true)}>
+        <img className="filtrePng" src={filtre} alt="image filtre" />
+        Filtre
+      </button>
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+          <section
+            className="filtre-container"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2>Filtres</h2>
+            <section className="filtre-statuts">
+              <button
+                className={statut === "" ? "bouton-actif" : "bouton-normal"}
+                onClick={() => setStatut(statut === "" ? "" : "")}
+              >
+                Tout les statuts
+              </button>
+              <button
+                className={
+                  statut === "arrive" ? "bouton-actif" : "bouton-normal"
+                }
+                onClick={() => setStatut(statut === "arrive" ? "" : "arrive")}
+              >
+                🔵 Arrivé
+              </button>
+              <button
+                className={
+                  statut === "en_reparation" ? "bouton-actif" : "bouton-normal"
+                }
+                onClick={() =>
+                  setStatut(statut === "en_reparation" ? "" : "en_reparation")
+                }
+              >
+                🟠 En réparation
+              </button>
+              <button
+                className={
+                  statut === "en_rayon" ? "bouton-actif" : "bouton-normal"
+                }
+                onClick={() =>
+                  setStatut(statut === "en_rayon" ? "" : "en_rayon")
+                }
+              >
+                🟢 En rayon
+              </button>
+              <button
+                className={
+                  statut === "vendu" ? "bouton-actif" : "bouton-normal"
+                }
+                onClick={() => setStatut(statut === "vendu" ? "" : "vendu")}
+              >
+                🔴 Vendu
+              </button>
+              <button
+                className={
+                  statut === "recycle" ? "bouton-actif" : "bouton-normal"
+                }
+                onClick={() => setStatut(statut === "recycle" ? "" : "recycle")}
+              >
+                ♻️ Recyclé
+              </button>
+            </section>
 
-      <select
-        value={categories}
-        onChange={(event) => setCategories(event.target.value)}
-      >
-        <option value="">Toutes les catégories</option>
-        <option value="1">Mobilier</option>
-        <option value="2">Électroménager</option>
-        <option value="3">Vaisselle</option>
-        <option value="4">Textile</option>
-        <option value="5">Livres</option>
-        <option value="6">Jouets</option>
-        <option value="7">Outillage</option>
-        <option value="8">Décoration</option>
-      </select>
+            <section className="filtre-categories">
+              <button
+                className={categories === "" ? "bouton-actif" : "bouton-normal"}
+                onClick={() => setCategories("")}
+              >
+                Toutes les catégories
+              </button>
+              <button
+                className={
+                  categories === "1" ? "bouton-actif" : "bouton-normal"
+                }
+                onClick={() => setCategories(categories === "1" ? "" : "1")}
+              >
+                Mobilier
+              </button>
+              <button
+                className={
+                  categories === "2" ? "bouton-actif" : "bouton-normal"
+                }
+                onClick={() => setCategories(categories === "2" ? "" : "2")}
+              >
+                Électroménager
+              </button>
+              <button
+                className={
+                  categories === "3" ? "bouton-actif" : "bouton-normal"
+                }
+                onClick={() => setCategories(categories === "3" ? "" : "3")}
+              >
+                Vaiselle
+              </button>
+              <button
+                className={
+                  categories === "4" ? "bouton-actif" : "bouton-normal"
+                }
+                onClick={() => setCategories(categories === "4" ? "" : "4")}
+              >
+                Textile
+              </button>
+              <button
+                className={
+                  categories === "5" ? "bouton-actif" : "bouton-normal"
+                }
+                onClick={() => setCategories(categories === "5" ? "" : "5")}
+              >
+                Livres
+              </button>
+              <button
+                className={
+                  categories === "6" ? "bouton-actif" : "bouton-normal"
+                }
+                onClick={() => setCategories(categories === "6" ? "" : "6")}
+              >
+                Jouets
+              </button>
+              <button
+                className={
+                  categories === "7" ? "bouton-actif" : "bouton-normal"
+                }
+                onClick={() => setCategories(categories === "7" ? "" : "7")}
+              >
+                Outillage
+              </button>
+              <button
+                className={
+                  categories === "8" ? "bouton-actif" : "bouton-normal"
+                }
+                onClick={() => setCategories(categories === "8" ? "" : "8")}
+              >
+                Décoration
+              </button>
+            </section>
+            <button
+              className="bouton-reset"
+              onClick={() => setIsModalOpen(false)}
+            >
+              Fermer les filtres
+            </button>
+          </section>
+        </div>
+      )}
 
       <section className="cards-container">
-        {/* 3. Sécurisation avec le point d'interrogation (?.) avant le map */}
         {objet?.map((item) => (
           <article className="card" key={item.id}>
             <header className="card-header">
