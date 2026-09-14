@@ -18,7 +18,7 @@ export default function FicheDepot() {
     statut: "arrive",
     prix: ""
   });
-
+ 
   const chargerDepot = () => {
     fetch(`http://localhost:3000/api/depots/${id}`)
       .then((res) => {
