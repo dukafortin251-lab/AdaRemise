@@ -568,3 +568,38 @@ button {
   background-color: #f3f4f6;
   border-color: #9ca3af;
 }
+
+.modal-content {
+  background: #ffffff;
+  width: 100%;
+  max-width: 500px; 
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-content p {
+  font-size: 1rem;
+  color: #374151;
+  margin: 4px 0;
+}
+
+.modal-content strong {
+  color: #111827;
+  font-weight: 600;
+  margin-right: 8px;
+}

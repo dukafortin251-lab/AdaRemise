@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import "../App.css";
 import filtre from "../assets/filtre.png";
+import ListeObjet from "./ListeObjet";
+import ModalObjet from "./ModalObjet";
 
-export default function CategorieStatut() {
+export default function FiltreObjet() {
   const [objet, setObjets] = useState([]);
   const [categories, setCategories] = useState("");
   const [statut, setStatut] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const fetchObjets = async () => {
     const params = new URLSearchParams();
@@ -15,7 +20,7 @@ export default function CategorieStatut() {
 
     try {
       const reponse = await fetch(
-        `http://localhost:3000/api/objets?${params.toString()}`,
+        `http://localhost:3000/api/objets?${params.toString()}`
       );
 
       if (!reponse.ok) {
@@ -40,14 +45,20 @@ export default function CategorieStatut() {
     fetchObjets();
   }, [statut, categories]);
 
+  const handleOpenDetails = (item) => {
+    setSelectedItem(item);
+    setIsDetailsModalOpen(true);
+  };
+
   return (
     <section>
-      <button className="bouton-filtre" onClick={() => setIsModalOpen(true)}>
+      <button className="bouton-filtre" onClick={() => setIsFilterModalOpen(true)}>
         <img className="filtrePng" src={filtre} alt="image filtre" />
-        Filtre
+        Filtres
       </button>
-      {isModalOpen && (
-        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+
+      {isFilterModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsFilterModalOpen(false)}>
           <section
             className="filtre-container"
             onClick={(e) => e.stopPropagation()}
@@ -61,45 +72,31 @@ export default function CategorieStatut() {
                 Tout les statuts
               </button>
               <button
-                className={
-                  statut === "arrive" ? "bouton-actif" : "bouton-normal"
-                }
+                className={statut === "arrive" ? "bouton-actif" : "bouton-normal"}
                 onClick={() => setStatut(statut === "arrive" ? "" : "arrive")}
               >
                 🔵 Arrivé
               </button>
               <button
-                className={
-                  statut === "en_reparation" ? "bouton-actif" : "bouton-normal"
-                }
-                onClick={() =>
-                  setStatut(statut === "en_reparation" ? "" : "en_reparation")
-                }
+                className={statut === "en_reparation" ? "bouton-actif" : "bouton-normal"}
+                onClick={() => setStatut(statut === "en_reparation" ? "" : "en_reparation")}
               >
                 🟠 En réparation
               </button>
               <button
-                className={
-                  statut === "en_rayon" ? "bouton-actif" : "bouton-normal"
-                }
-                onClick={() =>
-                  setStatut(statut === "en_rayon" ? "" : "en_rayon")
-                }
+                className={statut === "en_rayon" ? "bouton-actif" : "bouton-normal"}
+                onClick={() => setStatut(statut === "en_rayon" ? "" : "en_rayon")}
               >
                 🟢 En rayon
               </button>
               <button
-                className={
-                  statut === "vendu" ? "bouton-actif" : "bouton-normal"
-                }
+                className={statut === "vendu" ? "bouton-actif" : "bouton-normal"}
                 onClick={() => setStatut(statut === "vendu" ? "" : "vendu")}
               >
                 🔴 Vendu
               </button>
               <button
-                className={
-                  statut === "recycle" ? "bouton-actif" : "bouton-normal"
-                }
+                className={statut === "recycle" ? "bouton-actif" : "bouton-normal"}
                 onClick={() => setStatut(statut === "recycle" ? "" : "recycle")}
               >
                 ♻️ Recyclé
@@ -114,65 +111,49 @@ export default function CategorieStatut() {
                 Toutes les catégories
               </button>
               <button
-                className={
-                  categories === "1" ? "bouton-actif" : "bouton-normal"
-                }
+                className={categories === "1" ? "bouton-actif" : "bouton-normal"}
                 onClick={() => setCategories(categories === "1" ? "" : "1")}
               >
                 Mobilier
               </button>
               <button
-                className={
-                  categories === "2" ? "bouton-actif" : "bouton-normal"
-                }
+                className={categories === "2" ? "bouton-actif" : "bouton-normal"}
                 onClick={() => setCategories(categories === "2" ? "" : "2")}
               >
                 Électroménager
               </button>
               <button
-                className={
-                  categories === "3" ? "bouton-actif" : "bouton-normal"
-                }
+                className={categories === "3" ? "bouton-actif" : "bouton-normal"}
                 onClick={() => setCategories(categories === "3" ? "" : "3")}
               >
                 Vaiselle
               </button>
               <button
-                className={
-                  categories === "4" ? "bouton-actif" : "bouton-normal"
-                }
+                className={categories === "4" ? "bouton-actif" : "bouton-normal"}
                 onClick={() => setCategories(categories === "4" ? "" : "4")}
               >
                 Textile
               </button>
               <button
-                className={
-                  categories === "5" ? "bouton-actif" : "bouton-normal"
-                }
+                className={categories === "5" ? "bouton-actif" : "bouton-normal"}
                 onClick={() => setCategories(categories === "5" ? "" : "5")}
               >
                 Livres
               </button>
               <button
-                className={
-                  categories === "6" ? "bouton-actif" : "bouton-normal"
-                }
+                className={categories === "6" ? "bouton-actif" : "bouton-normal"}
                 onClick={() => setCategories(categories === "6" ? "" : "6")}
               >
                 Jouets
               </button>
               <button
-                className={
-                  categories === "7" ? "bouton-actif" : "bouton-normal"
-                }
+                className={categories === "7" ? "bouton-actif" : "bouton-normal"}
                 onClick={() => setCategories(categories === "7" ? "" : "7")}
               >
                 Outillage
               </button>
               <button
-                className={
-                  categories === "8" ? "bouton-actif" : "bouton-normal"
-                }
+                className={categories === "8" ? "bouton-actif" : "bouton-normal"}
                 onClick={() => setCategories(categories === "8" ? "" : "8")}
               >
                 Décoration
@@ -180,26 +161,22 @@ export default function CategorieStatut() {
             </section>
             <button
               className="bouton-reset"
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => setIsFilterModalOpen(false)}
             >
-              Fermer les filtres
+              Fermer
             </button>
           </section>
         </div>
       )}
 
-      <section className="cards-container">
-        {objet?.map((item) => (
-          <article className="card" key={item.id}>
-            <header className="card-header">
-              <span className="card-id"># {item.id}</span>
-              <span className="badge">{item.statut}</span>
-            </header>
-            <h3 className="card-title">{item.libelle}</h3>
-            <p className="card-price">{item.prix ? `${item.prix}€` : ""}</p>
-          </article>
-        ))}
-      </section>
+      <ListeObjet objets={objet} onCardClick={handleOpenDetails} />
+
+      {isDetailsModalOpen && (
+        <ModalObjet 
+          item={selectedItem} 
+          onClose={() => setIsDetailsModalOpen(false)} 
+        />
+      )}
     </section>
   );
 }
