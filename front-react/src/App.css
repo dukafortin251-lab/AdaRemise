@@ -50,7 +50,6 @@
   font-weight: 600;
   color: #111827;
   margin: 0 0 12px 0;
-
 }
 
 .card-price {
@@ -68,103 +67,162 @@
   margin : 0;
 }
 
-.filtre-container {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  width: 450px;
-  max-width: 90%;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  font-family: sans-serif;
+/* =========================================
+   STYLES POUR LA FICHE DÉPÔT (AJOUT)
+========================================= */
+
+.fiche-depot-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
-.filtre-container h2 {
-  margin-top: 0;
-  margin-bottom: 25px;
-  font-size: 24px;
-  font-weight: 500;
+/* En-tête de la fiche */
+.fiche-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.btn-retour {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
   color: #000;
 }
 
-.filtre-statuts,
-.filtre-categories {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 25px;
+.fiche-header h1 {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: normal;
+  margin: 0;
+  letter-spacing: 1px;
 }
 
-.bouton-normal,
-.bouton-actif {
+/* Conteneur principal (2 colonnes) */
+.fiche-content {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  gap: 25px;
+  align-items: flex-start;
 }
 
-.bouton-normal {
-  background-color: #ffffff;
-  border: 1px solid #d1d5db;
+/* --- COLONNE GAUCHE --- */
+.colonne-gauche {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 0 0 280px; /* Largeur fixe pour la colonne de gauche */
+}
+
+.info-card, .elements-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+}
+
+/* Espacement entre les clés et les valeurs dans la carte Info */
+.info-card p {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  font-size: 0.9rem;
   color: #333;
 }
 
-.bouton-actif {
-  background-color: #D4E882;
-  border: 1px solid #D4E882;
-  color: #282325;
+.info-card p strong {
+  color: #000;
+  font-weight: 600;
 }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
+.elements-card h3 {
+  margin-top: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.elements-list {
+  max-height: 150px;
+  overflow-y: auto;
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* --- COLONNE DROITE (Formulaire) --- */
+.colonne-droite {
+  flex: 1; /* Prend tout l'espace restant */
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+}
+
+.ajout-objet-form {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.bouton-reset {
-  width: 100%;
-  padding: 10px;
-  margin-top: 20px;
-  background-color: #282325;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.bouton-filtre {
+.form-row {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  background-color: #ffffff;
-  color: #333333;
-  font-size: 16px;
-  font-weight: 500;
-  padding: 10px 20px;
-  border: 1px solid #d1d5db;
+  gap: 20px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
   border-radius: 8px;
+  font-size: 0.9rem;
+  background-color: #fafafa;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #aaa;
+}
+
+/* Bouton Noir */
+.btn-noir {
+  width: 100%;
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 15px;
+  border-radius: 30px; /* Forme de pilule */
+  font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: background-color 0.2s;
+  margin-top: 15px;
+  text-transform: lowercase; /* Pour matcher "ajouter un objet" sur ton image */
+  transition: background 0.2s;
 }
 
-.bouton-filtre:hover {
-  background-color: #f3f4f6;
-}
-
-.filtrePng {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
+.btn-noir:hover {
+  background: #333333;
 }
