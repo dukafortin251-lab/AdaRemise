@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 export default function DepotList() {
@@ -7,7 +8,7 @@ export default function DepotList() {
   const [prenom, setPrenom] = useState("");
   const [nomDonateur, setNomDonateur] = useState("");
   const [dateDepot, setDateDepot] = useState("");
-
+  const navigate = useNavigate();
   const fetchDepots = async () => {
     try {
       const reponse = await fetch("http://localhost:3000/api/depots");
@@ -62,7 +63,8 @@ export default function DepotList() {
     <div className="depot-container">
       <div className="depot-header">
         <h2>Dépôts</h2>
-        <button>
+        <button onClick={() => 
+          navigate ("/depots/nouveau")}>
           enregistrer un nouveau depot
         </button>
       </div>
@@ -72,7 +74,8 @@ export default function DepotList() {
           <p>Aucun dépôt trouvé.</p>
         ) : (
           depots?.map((depot) => (
-            <article key={depot.id} className="card">
+            <article key={depot.id} className="card"
+            onClick={() => navigate (`/depots/${depot.id}`)}>
               <header className="card-header">
                 <span className="card-id"># {depot.id}</span>
               </header>
