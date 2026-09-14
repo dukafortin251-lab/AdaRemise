@@ -29,5 +29,23 @@ router.get("/:id", async (req, res) => {
     return res.status(500).json({ erreur: "Erreur interne du serveur" });
   }
 });
+router.post ("/", async (req,res) => {
+  const { nom, prenom, telephone } = req.body ;
 
+  if (!prenom) {
+    return res.status(400).json({ erreur: "Le prénom est obligatoire" });
+  }
+
+  try {
+    const { rows } = await pool.query(
+      `INSERT INTO personne (nom, prenom, telephone) VALUES ($1, $2, $3) RETURNING *`,
+      [nom || null, prenom, telephone || null]
+    );
+
+    return res.status(201).json(rows[0]);
+  } catch (err) {
+    console.error("Erreur lors de la création de la personne :", err);
+    return res.status(500).json({ erreur: "Erreur interne du serveur" });
+  }
+});
 export default router;
