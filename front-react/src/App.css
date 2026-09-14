@@ -68,22 +68,103 @@
   margin : 0;
 }
 
-.bouton-normal {
-  background-color: white;
-  color: #333;
-  border: 1px solid #ccc;
+.filtre-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 450px;
+  max-width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+}
+
+.filtre-container h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #000;
+}
+
+.filtre-statuts,
+.filtre-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.bouton-normal,
+.bouton-actif {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 8px 16px;
   border-radius: 20px;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
+.bouton-normal {
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #333;
+}
+
 .bouton-actif {
-  background-color: #5c728a; 
-  color: white;              
-  border: 1px solid #5c728a;
-  padding: 8px 16px;
-  border-radius: 20px;
+  background-color: #D4E882;
+  border: 1px solid #D4E882;
+  color: #282325;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.bouton-reset {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #282325;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
   cursor: pointer;
-  transition: all 0.2s ease;
+}
+
+.bouton-filtre {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s;
+}
+
+.bouton-filtre:hover {
+  background-color: #f3f4f6;
+}
+
+.filtrePng {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
