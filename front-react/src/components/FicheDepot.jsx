@@ -15,7 +15,7 @@ export default function FicheDepot() {
     categorie_id: 1,
     date_mise_rayon: "",
     poids_kg: "",
-    statut: "en_stock",
+    statut: "arrive",
     prix: ""
   });
 
@@ -66,7 +66,7 @@ export default function FicheDepot() {
         categorie_id: 1,
         date_mise_rayon: "",
         poids_kg: "",
-        statut: "en_stock",
+        statut: "arrive",
         prix: ""
       });
     } catch (err) {
@@ -74,7 +74,7 @@ export default function FicheDepot() {
     }
   };
 
-  if (erreur && !depot) return <p>Erreur : {erreur}</p>;
+  if (erreur && !depot) return <p className="message-erreur">Erreur : {erreur}</p>;
   if (!depot) return <p>Chargement de la fiche...</p>;
 
   return (
@@ -85,11 +85,10 @@ export default function FicheDepot() {
           <button onClick={() => navigate("/depots")} className="btn-retour">
             Dépôts
           </button>
-          <h1>FICHE DEPOT</h1>
         </header>
 
-        {erreur && <p style={{ color: "red", textAlign: "center" }}>{erreur}</p>}
-        {succesMsg && <p style={{ color: "green", textAlign: "center" }}>{succesMsg}</p>}
+        {erreur && <p className="message-erreur">{erreur}</p>}
+        {succesMsg && <p className="message-succes">{succesMsg}</p>}
 
         <div className="fiche-content">
           <aside className="colonne-gauche">
@@ -142,13 +141,20 @@ export default function FicheDepot() {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label>Catégorie (ID)</label>
-                  <input 
-                    type="number" 
+                  <label>Catégorie</label>
+                  <select 
                     value={nouvelObjet.categorie_id}
-                    onChange={(e) => setNouvelObjet({...nouvelObjet, categorie_id: e.target.value})}
-                    required
-                  />
+                    onChange={(e) => setNouvelObjet({...nouvelObjet, categorie_id: parseInt(e.target.value, 10)})}
+                  >
+                    <option value={1}>Mobilier</option>
+                    <option value={2}>Électroménager</option>
+                    <option value={3}>Vaisselle</option>
+                    <option value={4}>Textile</option>
+                    <option value={5}>Livres</option>
+                    <option value={6}>Jouets</option>
+                    <option value={7}>Outillage</option>
+                    <option value={8}>Décoration</option>
+                  </select>
                 </div>
                 <div className="form-group">
                   <label>Date de mise en rayon</label>
@@ -162,14 +168,6 @@ export default function FicheDepot() {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label>Statut</label>
-                  <input 
-                    type="text" 
-                    value={nouvelObjet.statut}
-                    onChange={(e) => setNouvelObjet({...nouvelObjet, statut: e.target.value})}
-                  />
-                </div>
-                <div className="form-group">
                   <label>Poids (kg)</label>
                   <input 
                     type="number" 
@@ -179,9 +177,6 @@ export default function FicheDepot() {
                     required
                   />
                 </div>
-              </div>
-
-              <div className="form-row">
                 <div className="form-group">
                   <label>Prix (€)</label>
                   <input 
@@ -193,9 +188,15 @@ export default function FicheDepot() {
                 </div>
               </div>
 
-              <button type="submit" className="btn-noir">
-                ajouter un objet
-              </button>
+              <div className="actions-formulaire">
+                <button type="submit" className="btn-noir">
+                  Ajouter un objet
+                </button>
+                <button type="button" className="btn-secondaire" onClick={() => navigate("/depots")}>
+                  Terminer
+                </button>
+              </div>
+
             </form>
           </main>
         </div>
