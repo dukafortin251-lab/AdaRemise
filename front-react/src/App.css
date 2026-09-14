@@ -1,11 +1,40 @@
-.logo {
-  height: 100px;
-  width: auto;
+/* ============================
+   POLICES
+   ============================ */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Bitter:wght@400;500&display=swap');
+
+/* ============================
+   VARIABLES & BASE
+   ============================ */
+:root {
+  --couleur-fond: #FFFFF6;
+  --couleur-texte: #282325;
+  --couleur-bouton: #D4E882;
+  --couleur-bouton-hover: #718422;
+  --couleur-beige: #F6F5DF;
 }
 
-.logoacceuil {
-  height: 150px;
-  width: auto;
+body {
+  background-color: var(--couleur-fond);
+  color: var(--couleur-texte);
+  font-family: "Bitter", serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Work Sans", sans-serif;
+}
+
+button {
+  font-family: "Work Sans", sans-serif;
+}
+
+/* ============================
+   NAVBAR
+   ============================ */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .navbarlink {
@@ -14,27 +43,60 @@
   list-style: none;
 }
 
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.logo {
+  height: 100px;
+  width: auto;
 }
 
+.logoacceuil {
+  height: 300px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.page-accueil {
+  text-align: center;
+}
+
+.page-accueil h1 {
+  border-bottom: 2px solid var(--couleur-bouton);
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.page-accueil h2 {
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+  font-weight: 600;
+  color: var(--couleur-bouton-hover);
+}
+
+
+/* ============================
+   CARTES (général)
+   ============================ */
 .cards-container {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   margin-top: 20px;
+  justify-content: center;  
+}
+
+.card-titre {
+  text-align: center;
+  color: var(--couleur-bouton-hover); /* Pacifika */
 }
 
 .card {
   flex: 1 1 220px;
   max-width: 300px;
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--couleur-bouton-hover);
   border-radius: 8px;
   padding: 16px;
-  box-shadow: 0 1px 3px argba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .card-header {
@@ -64,9 +126,59 @@
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.75rem;
-  margin : 0;
+  margin: 0;
 }
 
+/* Cartes bénévoles (avatar rond) */
+.card-grand {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cards-accueil {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  padding: 0 40px;
+}
+
+.cards-accueil .card-grand {
+  flex: 0 1 calc(20% - 32px);
+    width: 200px;
+    height: 200px;
+}
+
+.card-grand:hover {
+  background-color: var(--couleur-bouton)
+}
+
+.avatar-rond {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--couleur-beige);
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.lien-carte {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ============================
+   FILTRES (Inventaire)
+   ============================ */
 .filtre-container {
   background-color: #ffffff;
   padding: 30px;
@@ -93,6 +205,15 @@
   margin-bottom: 25px;
 }
 
+.filtrePng {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* ============================
+   BOUTONS
+   ============================ */
 .bouton-normal,
 .bouton-actif {
   display: flex;
@@ -112,34 +233,9 @@
 }
 
 .bouton-actif {
-  background-color: #D4E882;
-  border: 1px solid #D4E882;
-  color: #282325;
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.bouton-reset {
-  width: 100%;
-  padding: 10px;
-  margin-top: 20px;
-  background-color: #282325;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
+  background-color: var(--couleur-bouton);
+  border: 1px solid var(--couleur-bouton);
+  color: var(--couleur-texte);
 }
 
 .bouton-filtre {
@@ -162,6 +258,32 @@
   background-color: #f3f4f6;
 }
 
+.bouton-reset {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: var(--couleur-texte);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* ============================
+   MODALE
+   ============================ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 .filtrePng {
   width: 20px;
   height: 20px;
@@ -171,7 +293,6 @@
 
 /* =========================================
    NOUVEAUX BOUTONS ET MESSAGES (Ajouts)
-========================================= */
 
 .actions-formulaire {
   display: flex;
