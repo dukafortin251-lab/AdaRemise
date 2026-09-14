@@ -76,7 +76,7 @@ export default function DepotList() {
               <header className="card-header">
                 <span className="card-id"># {depot.id}</span>
               </header>
-              <h3 className="card-title">Donateur : {depot.prenom} {depot.nom_donateur}</h3>
+              <h3 className="card-title">Donatrice : {depot.prenom} {depot.nom_donateur}</h3>
               <p className="card-price">
                 Date dépôt : {depot.date_depot ? new Date(depot.date_depot).toLocaleDateString('fr-FR') : ""}
               </p>
