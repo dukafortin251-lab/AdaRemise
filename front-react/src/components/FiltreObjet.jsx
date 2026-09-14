@@ -63,7 +63,7 @@ export default function CategorieStatut() {
             setStatut(statut === "en_reparation" ? "" : "en_reparation")
           }
         >
-          🟠 En reparation
+          🟠 En réparation
         </button>
         <button
           className={statut === "en_rayon" ? "bouton-actif" : "bouton-normal"}
