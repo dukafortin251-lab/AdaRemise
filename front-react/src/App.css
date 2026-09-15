@@ -136,7 +136,6 @@ button {
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
 }
 
 .card-header {
@@ -230,7 +229,6 @@ button {
    ============================================ */
 .titre-dashboard {
   text-align: left;
-  padding: 0;
   margin: 20px 0 0 40px;
 }
 
