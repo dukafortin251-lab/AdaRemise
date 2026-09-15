@@ -1,17 +1,17 @@
 /* ============================================
    POLICES
    ============================================ */
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Bitter:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Bitter:wght@400;500&display=swap");
 
 /* ============================================
    VARIABLES & BASE
    ============================================ */
 :root {
-  --couleur-fond: #FFFFF6;
+  --couleur-fond: #fffff6;
   --couleur-texte: #282325;
-  --couleur-bouton: #D4E882;
+  --couleur-bouton: #d4e882;
   --couleur-bouton-hover: #718422;
-  --couleur-beige: #F6F5DF;
+  --couleur-beige: #f6f5df;
 }
 
 body {
@@ -20,7 +20,10 @@ body {
   font-family: "Bitter", serif;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: "Work Sans", sans-serif;
 }
 
@@ -89,7 +92,9 @@ button {
   font-size: 1rem;
   padding: 8px 4px;
   border-bottom: 2px solid transparent;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .navbarlink a:hover {
@@ -131,6 +136,7 @@ button {
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
 }
 
 .card-header {
@@ -179,7 +185,9 @@ button {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .card-grand:hover {
@@ -663,7 +671,8 @@ button {
   gap: 20px;
 }
 
-.info-card, .elements-card {
+.info-card,
+.elements-card {
   background-color: #f9fafb;
   border: 1px solid #e5e7eb;
   padding: 20px;
@@ -738,4 +747,38 @@ button {
 .form-group select:focus {
   outline: none;
   border-color: #1a1a1a;
+}
+/* ============================================
+   FICHE OBJET - BOUTON SELECT DU STATUT
+   ============================================ */
+.select-statut {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  max-width: 220px;
+  padding: 8px 36px 8px 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  color: #1f2937;
+  background-color: #ffffff;
+  border: 1.5px solid #0d2f75;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%23374151'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.select-statut:focus {
+  box-shadow: 0 0 0 2px #D4E882;
+}
+
+.select-statut option {
+  color: #111827;
+  background: #ffffff;
+  padding: 8px;
 }
