@@ -3,6 +3,7 @@ import { pool } from "../db.js";
 
 const router = express.Router();
 
+
 router.get("/", async (req, res) => {
   try {
     const { rows } = await pool.query("SELECT * FROM personne ORDER BY nom ASC");
@@ -12,7 +13,7 @@ router.get("/", async (req, res) => {
     return res.status(500).json({ erreur: "Erreur interne du serveur" });
   }
 });
- 
+
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -29,6 +30,7 @@ router.get("/:id", async (req, res) => {
     return res.status(500).json({ erreur: "Erreur interne du serveur" });
   }
 });
+
 router.post ("/", async (req,res) => {
   const { nom, prenom, telephone } = req.body ;
 

@@ -93,11 +93,11 @@ export default function FicheDepot() {
         <div className="fiche-content">
           <aside className="colonne-gauche">
             <div className="info-card">
-              <p><strong>ID</strong> #{depot.id}</p>
-              <p><strong>Donneur</strong> {depot.prenom} {depot.nom_donateur}</p>
-              <p><strong>Date de création</strong> {depot.date_depot ? new Date(depot.date_depot).toLocaleDateString('fr-FR') : ""}</p>
-              <p><strong>Lieu de dépôt</strong> {depot.type === "boutique" ? "En boutique" : "À domicile"}</p>
-              <p><strong>Statut</strong> En cours d'inventaire</p>
+              <p><strong>ID:</strong> #{depot.id}</p>
+              <p><strong>Donateur:</strong> {depot.prenom} {depot.nom_donateur}</p>
+              <p><strong>Date de création:</strong> {depot.date_depot ? new Date(depot.date_depot).toLocaleDateString('fr-FR') : ""}</p>
+              <p><strong>Lieu de dépôt:</strong> {depot.type === "boutique" ? "En boutique" : "À domicile"}</p>
+              <p><strong>Statut:</strong> En cours d'inventaire</p>
             </div>
 
             <div className="elements-card">
@@ -189,7 +189,7 @@ export default function FicheDepot() {
               </div>
 
               <div className="actions-formulaire">
-                <button type="submit" className="btn-noir">
+                <button type="submit" className="btn-header">
                   Ajouter un objet
                 </button>
                 <button type="button" className="btn-secondaire" onClick={() => navigate("/depots")}>
