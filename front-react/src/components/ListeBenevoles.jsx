@@ -22,7 +22,7 @@ export default function BenevolesListe() {
   };
 
   useEffect(() => {
-    fetchBenevoles();
+    fetchBenevoles(); 
   }, []);
 
   return (
