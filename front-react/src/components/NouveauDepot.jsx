@@ -117,11 +117,11 @@ export default function NouveauDepot() {
           </div>
 
           <div className="actions-formulaire">
-            <button type="submit" className="btn-noir">
-              Suivant
-            </button>
             <button type="button" className="btn-secondaire" onClick={() => navigate("/depots")}>
-              Annuler
+              annuler
+            </button>
+            <button type="submit" className="btn-noir">
+              suivant
             </button>
           </div>
         </form>
