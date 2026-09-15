@@ -8,7 +8,7 @@ export default function FiltreObjet() {
   const [objet, setObjets] = useState([]);
   const [categories, setCategories] = useState("");
   const [statut, setStatut] = useState("");
-  
+
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -52,13 +52,19 @@ export default function FiltreObjet() {
 
   return (
     <section>
-      <button className="bouton-filtre" onClick={() => setIsFilterModalOpen(true)}>
+      <button
+        className="bouton-filtre"
+        onClick={() => setIsFilterModalOpen(true)}
+      >
         <img className="filtrePng" src={filtre} alt="image filtre" />
         Filtres
       </button>
 
       {isFilterModalOpen && (
-        <div className="modal-overlay" onClick={() => setIsFilterModalOpen(false)}>
+        <div
+          className="modal-overlay"
+          onClick={() => setIsFilterModalOpen(false)}
+        >
           <section
             className="filtre-container"
             onClick={(e) => e.stopPropagation()}
@@ -169,8 +175,13 @@ export default function FiltreObjet() {
         </div>
       )}
 
-      <ListeObjet objets={objet} onCardClick={handleOpenDetails} />
-
+      {objet.length === 0 ? (
+        <section className="message-vide">
+          <p>Aucun objet ne correspond à vos critères de recherche.</p>
+        </section>
+      ) : (
+        <ListeObjet objets={objet} onCardClick={handleOpenDetails} />
+      )}
       {isDetailsModalOpen && (
         <ModalObjet 
           item={selectedItem} 
