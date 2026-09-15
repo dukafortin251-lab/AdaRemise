@@ -8,7 +8,7 @@ const TableauDeBord = () => {
   return (
     <div>
       <Navbar prenom={prenom} nom={nom} />
-      <h1>Tableau de bord</h1>
+      <h2>Tableau de bord</h2>
       <DataDashboard />
     </div>
   )

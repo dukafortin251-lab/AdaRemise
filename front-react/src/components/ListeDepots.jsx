@@ -88,7 +88,7 @@ export default function DepotList() {
               <div className="card-infos">
                 <div className="card-info-row">
                   <span className="card-label">ID</span>
-                  <span className="card-value">#D{depot.id}</span>
+                  <span className="card-value">#{depot.id}</span>
                 </div>
                 <div className="card-info-row">
                   <span className="card-label">DATE DE CRÉATION</span>

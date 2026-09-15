@@ -8,7 +8,7 @@ export default function Inventaire() {
   return (
     <main>
       <Navbar prenom={prenom} nom={nom} />
-      <h1>Inventaire</h1>
+      <h2>Inventaire</h2>
       <CategorieStatut />
     </main>
   );
