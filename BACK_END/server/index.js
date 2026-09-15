@@ -1,5 +1,11 @@
 import cors from 'cors';
 import express from "express";
+import swaggerUi from 'swagger-ui-express';
+import { createRequire } from "module";
+
+// Permet de lire le fichier swagger.json situé à la racine (BACK_END)
+const require = createRequire(import.meta.url);
+const swaggerDocument = require("../swagger.json"); 
 
 import categoriesRouter from "./routes/categories.js";
 import objetsRouter from "./routes/objets.js";
@@ -12,6 +18,9 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+
+// Affiche la doc sur la route /api-docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use("/api/categories", categoriesRouter);
 app.use("/api/objets", objetsRouter);
@@ -27,4 +36,5 @@ app.use((err, req, res, next) => {
 
 app.listen(3000, () => {
   console.log("Serveur sur http://localhost:3000");
+  console.log("📄 Doc Swagger dispo sur http://localhost:3000/api-docs");
 });

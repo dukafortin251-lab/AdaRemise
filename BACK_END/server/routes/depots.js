@@ -3,6 +3,7 @@ import { pool } from "../db.js";
 
 const router = express.Router();
 
+
 router.get("/", async (req, res) => {
   try {
     const { rows } = await pool.query(
@@ -68,6 +69,7 @@ router.get("/:id", async (req, res) => {
     return res.status(500).json({ erreur: "Erreur interne du serveur" });
   }
 });
+
 
 router.post("/:id/objets", async (req, res) => {
   const { libelle, poids_kg, etat_arrivee, statut, prix, date_mise_rayon, categorie_id, vente_id, prix_paye } = req.body;

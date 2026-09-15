@@ -1,0 +1,111 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API AdaRemise",
+    "version": "1.0.0",
+    "description": "Documentation des routes Dépôts et Personnes"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/api/personnes": {
+      "get": {
+        "summary": "Récupérer la liste des donateurs",
+        "tags": ["Personnes"],
+        "responses": {
+          "200": { "description": "Liste des personnes récupérée avec succès." }
+        }
+      }
+    },
+    "/api/depots": {
+      "post": {
+        "summary": "Enregistrer un nouveau dépôt",
+        "tags": ["Dépôts"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["personne_id"],
+                "properties": {
+                  "personne_id": { "type": "integer", "description": "ID du donateur (obligatoire)" },
+                  "date_depot": { "type": "string", "format": "date" },
+                  "type": { "type": "string", "enum": ["boutique", "domicile"], "default": "boutique" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Dépôt créé avec succès." },
+          "400": { "description": "Données invalides ou manquantes." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      }
+    },
+    "/api/depots/{id}": {
+      "get": {
+        "summary": "Récupérer le détail d'un dépôt par son ID",
+        "tags": ["Dépôts"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "integer" },
+            "description": "ID du dépôt"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Dépôt trouvé avec succès." },
+          "404": { "description": "Dépôt introuvable." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      }
+    },
+    "/api/depots/{id}/objets": {
+      "post": {
+        "summary": "Ajouter un objet à un dépôt spécifique",
+        "tags": ["Dépôts"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "integer" },
+            "description": "ID du dépôt concerné"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["libelle", "categorie_id", "poids_kg", "etat_arrivee"],
+                "properties": {
+                  "libelle": { "type": "string" },
+                  "categorie_id": { "type": "integer" },
+                  "poids_kg": { "type": "number" },
+                  "etat_arrivee": { "type": "string", "enum": ["bon_etat", "a_reparer", "hors_service"] },
+                  "statut": { "type": "string" },
+                  "prix": { "type": "number" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Objet ajouté avec succès." },
+          "400": { "description": "Champs obligatoires manquants ou invalides." },
+          "404": { "description": "Dépôt parent non trouvé." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      }
+    }
+  }
+}
