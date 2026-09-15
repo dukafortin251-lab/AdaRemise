@@ -1,11 +1,11 @@
-/* ============================
+/* ============================================
    POLICES
-   ============================ */
+   ============================================ */
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Bitter:wght@400;500&display=swap');
 
-/* ============================
+/* ============================================
    VARIABLES & BASE
-   ============================ */
+   ============================================ */
 :root {
   --couleur-fond: #FFFFF6;
   --couleur-texte: #282325;
@@ -28,33 +28,24 @@ button {
   font-family: "Work Sans", sans-serif;
 }
 
-/* ============================
-   NAVBAR
-   ============================ */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.navbarlink {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-}
-
+/* ============================================
+   LOGO
+   ============================================ */
 .logo {
-  height: 100px;
+  height: 40px;
   width: auto;
 }
 
 .logoacceuil {
-  height: 300px;
+  height: 180px;
   width: auto;
   display: block;
   margin: 0 auto;
 }
 
+/* ============================================
+   PAGE D'ACCUEIL (Bénévoles)
+   ============================================ */
 .page-accueil {
   text-align: center;
 }
@@ -72,10 +63,55 @@ button {
   color: var(--couleur-bouton-hover);
 }
 
+/* ============================================
+   NAVBAR
+   ============================================ */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--couleur-fond);
+  padding: 10px 40px;
+  border-bottom: 1px solid #eee;
+}
 
-/* ============================
-   CARTES (général)
-   ============================ */
+.navbarlink {
+  display: flex;
+  gap: 35px;
+  list-style: none;
+}
+
+.navbarlink a {
+  text-decoration: none;
+  color: var(--couleur-texte);
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 8px 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.navbarlink a:hover {
+  color: var(--couleur-bouton-hover);
+  border-bottom: 2px solid var(--couleur-bouton-hover);
+}
+
+.navbarlink a.active {
+  color: var(--couleur-bouton-hover);
+  border-bottom: 2px solid var(--couleur-bouton-hover);
+  font-weight: 600;
+}
+
+.prenom-benevole {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
+  color: var(--couleur-texte);
+}
+
+/* ============================================
+   CARTES - GÉNÉRAL (Inventaire, Dépôts, Dashboard)
+   ============================================ */
 .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -90,6 +126,7 @@ button {
 .card-titre {
   text-align: center;
   color: var(--couleur-bouton-hover);
+  justify-content: center;
 }
 
 .card {
@@ -204,7 +241,14 @@ margin: 10px 0 12px 0;
   margin: 0;
 }
 
-/* Cartes bénévoles (avatar rond) */
+/* ============================================
+   CARTES BÉNÉVOLES (avatar rond + page d'accueil)
+   ============================================ */
+.card-titre {
+  text-align: center;
+  color: var(--couleur-bouton-hover);
+}
+
 .card-grand {
   width: 220px;
   height: 220px;
@@ -216,11 +260,15 @@ margin: 10px 0 12px 0;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.card-grand:hover {
+  background-color: var(--couleur-bouton);
+}
+
 .cards-accueil {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 32px;
+  gap: 20px;
   padding: 0 40px;
 }
 
@@ -232,6 +280,8 @@ margin: 10px 0 12px 0;
 
 .card-grand:hover {
   background-color: var(--couleur-bouton);
+  width: 160px;
+  height: 160px;
 }
 
 .avatar-rond {
@@ -251,9 +301,9 @@ margin: 10px 0 12px 0;
   color: inherit;
 }
 
-/* ============================
+/* ============================================
    FILTRES (Inventaire)
-   ============================ */
+   ============================================ */
 .filtre-container {
   background-color: #ffffff;
   padding: 30px;
@@ -286,9 +336,9 @@ margin: 10px 0 12px 0;
   object-fit: contain;
 }
 
-/* ============================
-   BOUTONS
-   ============================ */
+/* ============================================
+   BOUTONS - GÉNÉRAL
+   ============================================ */
 .bouton-normal,
 .bouton-actif {
   display: flex;
@@ -378,10 +428,17 @@ margin: 10px 0 12px 0;
   text-align: center;
 }
 
+/* ============================================
+   BOUTONS - FORMULAIRES (Dépôts)
+   ============================================ */
 .actions-formulaire {
   display: flex;
   gap: 15px;
   margin-top: 20px;
+}
+
+.actions-formulaire button {
+  flex: 1;
 }
 
 .btn-noir {
@@ -436,6 +493,107 @@ margin: 10px 0 12px 0;
 /* =========================================
    MISE EN PAGE GÉNÉRALE (Fiche Dépôt)
    ========================================= */
+.btn-retour {
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-retour:hover {
+  background-color: #f3f4f6;
+}
+
+/* ============================================
+   MESSAGES (succès / erreur)
+   ============================================ */
+.message-erreur {
+  color: #dc2626;
+  text-align: center;
+  font-weight: bold;
+}
+
+.message-succes {
+  color: #16a34a;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* ============================================
+   MODALE (générique)
+   ============================================ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #ffffff;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-content p {
+  font-size: 1rem;
+  color: #374151;
+  margin: 4px 0;
+}
+
+.modal-content strong {
+  color: #111827;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+/* ============================================
+   PAGE NOUVEAU DÉPÔT
+   ============================================ */
+.nouveau-depot-page {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+}
+
+.nouveau-depot-page h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* ============================================
+   FICHE DÉPÔT - MISE EN PAGE
+   ============================================ */
 .fiche-depot-page {
   max-width: 1100px;
   margin: 0 auto;
@@ -462,6 +620,9 @@ margin: 10px 0 12px 0;
   align-items: flex-start;
 }
 
+/* ============================================
+   FICHE DÉPÔT - COLONNE GAUCHE (infos + liste)
+   ============================================ */
 .colonne-gauche {
   flex: 1;
   display: flex;
@@ -497,6 +658,9 @@ margin: 10px 0 12px 0;
   color: #374151;
 }
 
+/* ============================================
+   FICHE DÉPÔT - COLONNE DROITE (formulaire)
+   ============================================ */
 .colonne-droite {
   flex: 2;
   background-color: #ffffff;
@@ -529,7 +693,7 @@ margin: 10px 0 12px 0;
   color: #374151;
 }
 
-.form-group input, 
+.form-group input,
 .form-group select {
   padding: 10px;
   border: 1px solid #d1d5db;
@@ -537,7 +701,7 @@ margin: 10px 0 12px 0;
   font-size: 14px;
 }
 
-.form-group input:focus, 
+.form-group input:focus,
 .form-group select:focus {
   outline: none;
   border-color: #1a1a1a;
