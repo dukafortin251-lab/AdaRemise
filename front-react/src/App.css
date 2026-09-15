@@ -82,15 +82,18 @@ button {
   gap: 16px;
   margin-top: 20px;
   justify-content: center;  
+  max-width: 1000px; 
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .card-titre {
   text-align: center;
-  color: var(--couleur-bouton-hover); /* Pacifika */
+  color: var(--couleur-bouton-hover);
 }
 
 .card {
-  flex: 1 1 220px;
+  flex: 0 0 calc((100% - 48px) / 4);
   max-width: 300px;
   background: #ffffff;
   border: 1px solid var(--couleur-bouton-hover);
@@ -99,19 +102,91 @@ button {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
+.depot-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.depot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.carddepot {
+  flex: 0 0 calc((100% - 48px) / 4);
+  width: calc((100% - 48px) / 4);
+  background: #ffffff;
+  border: 1px solid var(--couleur-bouton-hover); /* <-- Remet la bordure verte d'origine */
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+/* ============================
+   STYLE DES CARTES DE DÉPÔT
+   ============================ */
+.card-top-section {
+  text-align: center;
+  padding-top: 4px;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--couleur-texte);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.card-divider {
+  border: none;
+  border-top: 1px solid var(--couleur-bouton-hover); /* <-- Remet aussi le vert sur la ligne intérieure */
+margin: 10px 0 12px 0;
+}
+
+.card-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 50px; /* Passe de 8px à 14px (ou la valeur qui te convient) pour créer plus d'espace entre les deux lignes */
+}
+
+.card-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.card-label {
+  color: #6b7280;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-size: 0.6rem; 
+  max-width: 55%;    
+}
+
+.card-value {
+  color: var(--couleur-texte);
+  font-weight: 600;
+  text-align: right;
+}
+
+
+
 .card-header {
   display: flex;
   justify-content: space-between;
   font-size: 0.8rem;
   color: #6b7280;
   margin-bottom: 8px;
-}
-
-.card-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #111827;
-  margin: 0 0 12px 0;
 }
 
 .card-price {
@@ -151,12 +226,12 @@ button {
 
 .cards-accueil .card-grand {
   flex: 0 1 calc(20% - 32px);
-    width: 200px;
-    height: 200px;
+  width: 200px;
+  height: 200px;
 }
 
 .card-grand:hover {
-  background-color: var(--couleur-bouton)
+  background-color: var(--couleur-bouton);
 }
 
 .avatar-rond {
@@ -284,54 +359,6 @@ button {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-.filtrePng {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-}
-
-
-/* =========================================
-   NOUVEAUX BOUTONS ET MESSAGES (Ajouts)
-
-.actions-formulaire {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.actions-formulaire button {
-  flex: 1; /* Les boutons prennent la même largeur */
-}
-
-.btn-secondaire {
-  background: #ffffff;
-  color: #000000;
-  border: 1px solid #d1d5db;
-  padding: 15px;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  text-transform: lowercase;
-  transition: all 0.2s;
-}
-
-.btn-secondaire:hover {
-  background: #f3f4f6;
-  border-color: #9ca3af;
-}
-
-.message-erreur {
-  color: #dc2626;
-  text-align: center;
-  font-weight: bold;
-}
-
-.message-succes {
-  color: #16a34a;
-  text-align: center;
-  font-weight: bold;
 }
 
 /* Page Nouveau Dépôt */
@@ -351,14 +378,12 @@ button {
   text-align: center;
 }
 
-/* Conteneur pour aligner les boutons côte à côte */
 .actions-formulaire {
   display: flex;
   gap: 15px;
   margin-top: 20px;
 }
 
-/* Bouton principal : Ajouter un objet */
 .btn-noir {
   background-color: #1a1a1a;
   color: #ffffff;
@@ -376,7 +401,20 @@ button {
   background-color: #404040;
 }
 
-/* Bouton secondaire : Terminer */
+.btn-enregistrer {
+  background-color: #282325;
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background-color 0.2s;
+  width: fit-content;
+}
+
 .btn-secondaire {
   background-color: #ffffff;
   color: #1a1a1a;
@@ -395,7 +433,6 @@ button {
   border-color: #9ca3af;
 }
 
-
 /* =========================================
    MISE EN PAGE GÉNÉRALE (Fiche Dépôt)
    ========================================= */
@@ -408,6 +445,7 @@ button {
 
 .fiche-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 20px;
   margin-bottom: 30px;
@@ -424,11 +462,8 @@ button {
   align-items: flex-start;
 }
 
-/* =========================================
-   COLONNE GAUCHE (Infos et liste des objets)
-   ========================================= */
 .colonne-gauche {
-  flex: 1; /* Prend un tiers de la largeur */
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -462,11 +497,8 @@ button {
   color: #374151;
 }
 
-/* =========================================
-   COLONNE DROITE (Formulaire)
-   ========================================= */
 .colonne-droite {
-  flex: 2; /* Prend deux tiers de la largeur */
+  flex: 2;
   background-color: #ffffff;
   border: 1px solid #e5e7eb;
   padding: 30px;
@@ -511,9 +543,6 @@ button {
   border-color: #1a1a1a;
 }
 
-/* =========================================
-   BOUTONS
-   ========================================= */
 .btn-retour {
   background-color: #ffffff;
   border: 1px solid #d1d5db;
@@ -527,46 +556,17 @@ button {
   background-color: #f3f4f6;
 }
 
-/* Conteneur pour aligner les boutons "Ajouter" et "Terminer" */
-.actions-formulaire {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.btn-noir {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  border: none;
-  padding: 12px 24px;
-  font-size: 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  text-transform: uppercase;
-  transition: background-color 0.2s;
-}
-
-.btn-noir:hover {
-  background-color: #404040;
-}
-
-.btn-secondaire {
+.btn-header {
   background-color: #ffffff;
-  color: #1a1a1a;
   border: 1px solid #d1d5db;
-  padding: 12px 24px;
-  font-size: 14px;
+  padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: 600;
-  text-transform: uppercase;
-  transition: all 0.2s;
+  font-weight: bold;
 }
 
-.btn-secondaire:hover {
+.btn-header:hover {
   background-color: #f3f4f6;
-  border-color: #9ca3af;
 }
 
 .modal-content {

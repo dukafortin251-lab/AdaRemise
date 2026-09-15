@@ -63,8 +63,7 @@ export default function DepotList() {
     <div className="depot-container">
       <div className="depot-header">
         <h2>Dépôts</h2>
-        <button onClick={() => 
-          navigate ("/depots/nouveau")}>
+        <button className="btn-enregistrer" onClick={() => navigate ("/depots/nouveau")}>
           enregistrer un nouveau depot
         </button>
       </div>
@@ -74,15 +73,30 @@ export default function DepotList() {
           <p>Aucun dépôt trouvé.</p>
         ) : (
           depots?.map((depot) => (
-            <article key={depot.id} className="card"
-            onClick={() => navigate (`/depots/${depot.id}`)}>
-              <header className="card-header">
-                <span className="card-id"># {depot.id}</span>
-              </header>
-              <h3 className="card-title">Donatrice : {depot.prenom} {depot.nom_donateur}</h3>
-              <p className="card-price">
-                Date dépôt : {depot.date_depot ? new Date(depot.date_depot).toLocaleDateString('fr-FR') : ""}
-              </p>
+            <article key={depot.id} className="carddepot" onClick={() => navigate (`/depots/${depot.id}`)}>
+              {/* Nom centré en haut */}
+              <div className="card-top-section">
+                <h3 className="card-title">
+                  {depot.prenom} <br /> {depot.nom_donateur}
+                </h3>
+              </div>
+              
+              {/* Ligne de séparation */}
+              <hr className="card-divider" />
+
+              {/* Informations en dessous (ID et Date) */}
+              <div className="card-infos">
+                <div className="card-info-row">
+                  <span className="card-label">ID</span>
+                  <span className="card-value">#D{depot.id}</span>
+                </div>
+                <div className="card-info-row">
+                  <span className="card-label">DATE DE CRÉATION</span>
+                  <span className="card-value">
+                    {depot.date_depot ? new Date(depot.date_depot).toLocaleDateString('fr-FR') : ""}
+                  </span>
+                </div>
+              </div>
             </article>
           ))
         )}
