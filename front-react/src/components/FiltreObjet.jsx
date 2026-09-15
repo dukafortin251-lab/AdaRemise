@@ -186,6 +186,7 @@ export default function FiltreObjet() {
         <ModalObjet 
           item={selectedItem} 
           onClose={() => setIsDetailsModalOpen(false)} 
+          onUpdate={fetchObjets}
         />
       )}
     </section>

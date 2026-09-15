@@ -3,7 +3,6 @@ export default function FicheObjet({ item, onClick }) {
     <article 
       className="card" 
       onClick={() => onClick(item)}
-      style={{ cursor: "pointer" }}
     >
       <header className="card-header">
         <span className="card-id"># {item.id}</span>
