@@ -155,7 +155,7 @@ margin: 10px 0 12px 0;
 .card-infos {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Passe de 8px à 14px (ou la valeur qui te convient) pour créer plus d'espace entre les deux lignes */
+  gap: 50px; /* Passe de 8px à 14px (ou la valeur qui te convient) pour créer plus d'espace entre les deux lignes */
 }
 
 .card-info-row {
