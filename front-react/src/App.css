@@ -240,11 +240,10 @@ button {
   flex-wrap: wrap;
   gap: 24px;
   max-width: 1000px;
-  margin: 30px auto;
-  padding:  20px;
-  align-items: flex-start;
+  margin: 0 auto;
+  align-items: stretch;
+  justify-content: center;
 }
-
 .dashboard-grid .card {
   flex: 1 1 calc(50% - 12px);
   text-align: left;
@@ -350,7 +349,8 @@ button {
 .card-infos {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 20px;
+  margin-top: 20px;
 }
 
 .card-info-row {
@@ -756,7 +756,8 @@ button {
   width: 100%;
   max-width: 220px;
   padding: 8px 36px 8px 12px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 15px;
   color: #1f2937;
   background-color: #ffffff;
@@ -768,15 +769,81 @@ button {
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 14px;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .select-statut:focus {
-  box-shadow: 0 0 0 2px #D4E882;
+  box-shadow: 0 0 0 2px #d4e882;
 }
 
 .select-statut option {
   color: #111827;
   background: #ffffff;
   padding: 8px;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+.badge-vendu {
+  background-color: #e6f4ea;
+  color: #137333;
+}
+
+.badge-recycle {
+  background-color: #e8f0fe;
+  color: #1967d2;
+}
+
+.badge-reparation {
+  background-color: #fef7e0;
+  color: #b06000;
+}
+
+.badge-rayon {
+  background-color: #fce8e6;
+  color: #c5221f;
+}
+
+.badge-arrive {
+  background-color: #f1f3f4;
+  color: #5f6368;
+}
+
+.badge-defaut {
+  background-color: #333;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .card,
+  .carddepot {
+    flex: 1 1 45%;
+    aspect-ratio: auto;
+    min-height: 200px;
+  }
+
+  .fiche-content,
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  .card,
+  .carddepot,
+  .dashboard-grid .card {
+    flex: 1 1 100%;
+    aspect-ratio: auto;
+  }
+
+  .navbarlink {
+    gap: 15px;
+  }
 }
