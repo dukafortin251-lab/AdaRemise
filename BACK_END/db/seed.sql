@@ -19,7 +19,7 @@ INSERT INTO competence (libelle) VALUES
 
 -- 22 personnes — donatrices, acheteuses et inscrites aux ateliers
 INSERT INTO personne (nom, prenom, telephone, adherente) VALUES
-  ('Bernard', 'Malika', '0648911302', true),
+  ('Lovelace', 'Malika', '0648911302', true),
   ('Dubois', 'Camille', '0619820725', false),
   ('Moreau', 'Sofia', '0668105556', false),
   ('Laurent', 'Inès', '0699883355', true),
@@ -47,6 +47,7 @@ INSERT INTO benevole (nom, prenom, telephone, date_arrivee) VALUES
   ('Petit', 'Hélène', '0653895179', CURRENT_DATE - 120),
   ('Durand', 'Farida', '0613815891', CURRENT_DATE - 215),
   ('Leroux', 'Sonia', '0620438808', CURRENT_DATE - 310),
+  ('Lovelace', 'Malika', '0648911302', CURRENT_DATE - 350),
   ('Garnier', 'Béatrice', '0688664937', CURRENT_DATE - 405),
   ('Chevalier', 'Nadia', '0640047252', CURRENT_DATE - 500),
   ('Robin', 'Claire', '0665645499', CURRENT_DATE - 595),
