@@ -1,7 +1,16 @@
 import { useState, useEffect } from "react";
 
+
 export default function ModalObjet({ item, onClose, onUpdate }) {
   if (!item) return null;
+
+  const label_statut = {
+  vendu: "Vendu",
+  recycle: "Recyclé",
+  en_reparation: "En réparation",
+  en_rayon: "En rayon",
+  arrive: "Arrivé",
+};
 
   const [status, setStatus] = useState(item.statut || "");
 
@@ -66,7 +75,7 @@ export default function ModalObjet({ item, onClose, onUpdate }) {
           <p>#{item.id}</p>
         </h2>
         <p>
-          <strong>Statut actuel :</strong> {status || "-"}
+          <strong>Statut actuel :</strong> {label_statut[item.statut] || item.statut}
         </p>
         <p>
           <strong>Date de mise en rayon :</strong> {dateFormatee}
