@@ -40,7 +40,7 @@ export default function NouveauDepot() {
     e.preventDefault();
     try {
       if (!personneId) {
-        throw new Error("Veuillez sélectionner un donateur.");
+        throw new Error("Veuillez sélectionner une donatrice.");
       }
 
       const reponseDepot = await fetch("http://localhost:3000/api/depots", {
@@ -74,13 +74,13 @@ export default function NouveauDepot() {
         <form onSubmit={handleSubmit} className="ajout-objet-form">
           
           <div className="form-group">
-            <label>Donateur :</label>
+            <label>Donatrice :</label>
             <select 
               value={personneId} 
               onChange={handleDonateurChange}
               required
             >
-              <option value=""> Sélectionner un donateur </option>
+              <option value=""> Sélectionner une donatrice </option>
               {personnes.map((personne) => (
                 <option key={personne.id} value={personne.id}>
                   {personne.prenom} {personne.nom}
@@ -100,7 +100,7 @@ export default function NouveauDepot() {
           </div>
           
           <div className="form-group">
-            <label>Date de création :</label>
+            <label>Date :</label>
             <input
               type="date"
               value={dateDepot}

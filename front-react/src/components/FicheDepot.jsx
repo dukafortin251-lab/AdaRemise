@@ -92,8 +92,8 @@ export default function FicheDepot() {
             <div className="info-card">
               <h3>Informations du dépôt</h3>
               <p><strong>ID:</strong> #{depot.id}</p>
-              <p><strong>Donateur:</strong> {depot.prenom} {depot.nom_donateur}</p>
-              <p><strong>Date de création:</strong> {depot.date_depot ? new Date(depot.date_depot).toLocaleDateString('fr-FR') : ""}</p>
+              <p><strong>Donatrice:</strong> {depot.prenom} {depot.nom_donateur}</p>
+              <p><strong>Date:</strong> {depot.date_depot ? new Date(depot.date_depot).toLocaleDateString('fr-FR') : ""}</p>
               <p><strong>Lieu de dépôt:</strong> {depot.type === "boutique" ? "En boutique" : "À domicile"}</p>
               <p><strong>Statut:</strong> En cours d'inventaire</p>
             </div>
@@ -128,7 +128,7 @@ export default function FicheDepot() {
                   />
                 </div>
                 <div className="form-group">
-                  <label>État d'arrivée</label>
+                  <label>État d'arrivé</label>
                   <select 
                     value={nouvelObjet.etat_arrivee}
                     onChange={(e) => setNouvelObjet({...nouvelObjet, etat_arrivee: e.target.value})}
