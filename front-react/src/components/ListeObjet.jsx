@@ -14,7 +14,7 @@ const classe_statut = {
   arrive: "badge-arrive",
 };
 
-export default function ListeObjets({ objets, onCardClick }) {
+export default function ListeObjet({ objets, onCardClick }) {
   if (!objets || objets.length === 0) {
     return (
       <p className="message-vide">
@@ -24,43 +24,46 @@ export default function ListeObjets({ objets, onCardClick }) {
   }
 
   return (
-    <section className="depot-container">
-      <section className="cards-container">
-        {objets.map((item) => {
-          const badgeClass = classe_statut[item.statut] || "badge-defaut";
-          const statutLabel = label_statut[item.statut] || item.statut || "Non défini";
+    <section className="cards-container">
+      {objets.map((item) => {
+        const badgeClass = classe_statut[item.statut] || "badge-defaut";
+        const statutLabel =
+          label_statut[item.statut] || item.statut || "Non défini";
 
-          return (
-            <article
-              key={item.id}
-              className="carddepot carte-cliquable"
-              onClick={() => onCardClick && onCardClick(item)}
-            >
-              <div className="card-top-section">
-                <h3 className="card-title">
-                  {item.libelle || item.nom || "Objet sans nom"}
-                </h3>
+        return (
+          <article
+            key={item.id}
+            className="carddepot carte-cliquable"
+            onClick={() => onCardClick && onCardClick(item)}
+          >
+            <div className="card-top-section">
+              <h3 className="card-title">
+                {item.libelle || item.nom || "Objet sans nom"}
+              </h3>
+            </div>
+
+            <hr className="card-divider" />
+
+            <div className="card-infos">
+              <div className="card-info-row">
+                <span className="card-label">ID</span>
+                <span className="card-value">#{item.id}</span>
               </div>
-              
-              <hr className="card-divider" />
-              
-              <div className="card-infos">
-                <div className="card-info-row">
-                  <span className="card-label">ID</span>
-                  <span className="card-value">#{item.id}</span>
-                </div>
-                
-                <div className="card-info-row">
-                  <span className="card-label">STATUT</span>
-                  <span className={`badge ${badgeClass}`}>
-                    {statutLabel}
-                  </span>
-                </div>
+
+              <div className="card-info-row">
+                <span className="card-label">STATUT</span>
+                <span className={`badge ${badgeClass}`}>{statutLabel}</span>
               </div>
-            </article>
-          );
-        })}
-      </section>
+              <div className="card-info-row">
+                <span className="card-label">PRIX</span>
+                <span className="card-value">
+                  {item.prix != null ? `${item.prix}€` : "-"}
+                </span>
+              </div>
+            </div>
+          </article>
+        );
+      })}
     </section>
   );
 }

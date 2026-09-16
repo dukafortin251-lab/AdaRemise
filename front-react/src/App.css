@@ -28,7 +28,7 @@ h4 {
 }
 
 button {
-  font-family: "Work Sans", sans-serif;
+  font-family: "Bitter", sans-serif;
 }
 
 /* ============================================
@@ -228,8 +228,22 @@ button {
    TABLEAU DE BORD - TITRE
    ============================================ */
 .titre-dashboard {
-  text-align: left;
-  margin: 20px 0 0 40px;
+  width: 100%;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--couleur-texte);
+  margin: 40px 0 40px 0;
+}
+
+.titre-dashboard::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: var(--couleur-bouton-hover);
+  margin: 15px auto 0 auto;
+  border-radius: 2px;
 }
 
 /* ============================================
@@ -308,14 +322,13 @@ button {
 .depot-container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
 }
 
 .depot-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 /* ============================================
@@ -333,11 +346,21 @@ button {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .card-top-section {
+  height: 55px;
+  min-height: 55px; /* Interdit de rétrécir */
+  max-height: 55px; /* Interdit de s'agrandir, même avec 2 lignes ! */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-title {
+  margin: 0; /* TRÈS IMPORTANT : supprime la marge par défaut qui pousse la carte */
   text-align: center;
-  padding-top: 4px;
 }
 
 .card-divider {
@@ -440,8 +463,8 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: #ffffff;
-  color: #333333;
+  background-color: var(--couleur-bouton-hover);
+  color: var(--couleur-beige);
   font-size: 16px;
   font-weight: 500;
   padding: 10px 20px;
@@ -453,19 +476,23 @@ button {
 }
 
 .bouton-filtre:hover {
-  background-color: #f3f4f6;
+  filter: brightness(0.85);
 }
 
 .bouton-reset {
   width: 100%;
   padding: 10px;
   margin-top: 20px;
-  background-color: var(--couleur-texte);
-  color: white;
+  background-color: var(--couleur-bouton-hover);
+  color: var(--couleur-beige);
   border: none;
   border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
+}
+
+.bouton-reset:hover {
+  filter: brightness(0.85);
 }
 
 /* ============================================
@@ -482,67 +509,70 @@ button {
 }
 
 .btn-noir {
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: var(--couleur-bouton-hover);
+  color: var(--couleur-beige);
   border: none;
   padding: 12px 24px;
   font-size: 14px;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: 600;
-  text-transform: uppercase;
+  font-weight: 500;
   transition: background-color 0.2s;
 }
 
 .btn-noir:hover {
-  background-color: #404040;
+  filter: brightness(0.85);
 }
 
 .btn-secondaire {
-  background-color: #ffffff;
-  color: #1a1a1a;
+  background-color: var(--couleur-bouton-hover);
+  color: var(--couleur-beige);
   border: 1px solid #d1d5db;
   padding: 12px 24px;
   font-size: 14px;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: 600;
-  text-transform: uppercase;
+  font-weight: 500;
   transition: all 0.2s;
+  font-family: "Bitter";
 }
 
 .btn-secondaire:hover {
-  background-color: #f3f4f6;
-  border-color: #9ca3af;
+  filter: brightness(0.85);
 }
 
 .btn-retour,
 .btn-header {
-  background-color: #ffffff;
+  background-color: var(--couleur-bouton-hover);
   border: 1px solid #d1d5db;
   padding: 8px 16px;
   border-radius: 6px;
+  font-size: 14px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 500;
+  color: var(--couleur-beige);
 }
 
 .btn-retour:hover,
 .btn-header:hover {
-  background-color: #f3f4f6;
+  filter: brightness(0.85);
 }
 
 .btn-enregistrer {
-  background-color: #282325;
-  color: #ffffff;
+  background-color: var(--couleur-bouton-hover);
+  color: var(--couleur-beige);
   border: none;
   padding: 12px 24px;
   font-size: 14px;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: 600;
-  text-transform: uppercase;
+  font-weight: 500;
   transition: background-color 0.2s;
   width: fit-content;
+}
+
+.btn-enregistrer:hover {
+  filter: brightness(0.85);
 }
 
 /* ============================================
@@ -635,7 +665,7 @@ button {
    ============================================ */
 .fiche-depot-page {
   max-width: 1100px;
-  margin: 0 auto;
+  margin: 100px auto 40px auto;
   padding: 20px;
   font-family: Arial, sans-serif;
 }
@@ -671,7 +701,7 @@ button {
 
 .info-card,
 .elements-card {
-  background-color: #f9fafb;
+  background-color: #ffffff;
   border: 1px solid #e5e7eb;
   padding: 20px;
   border-radius: 8px;
@@ -718,6 +748,7 @@ button {
 .form-row {
   display: flex;
   gap: 20px;
+  margin-top: 10px;
 }
 
 .form-group {
@@ -745,6 +776,10 @@ button {
 .form-group select:focus {
   outline: none;
   border-color: #1a1a1a;
+}
+
+.titre-objet{
+  text-align: center;
 }
 /* ============================================
    FICHE OBJET - BOUTON SELECT DU STATUT
