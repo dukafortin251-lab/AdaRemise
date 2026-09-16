@@ -3,7 +3,7 @@
   "info": {
     "title": "API AdaRemise",
     "version": "1.0.0",
-    "description": "Documentation des routes Dépôts et Personnes"
+    "description": "Documentation des routes Dépôts, Personnes, Objets et Catégories"
   },
   "servers": [
     {
@@ -11,12 +11,148 @@
     }
   ],
   "paths": {
-    "/api/personnes": {
+  "/api/personnes": {
       "get": {
         "summary": "Récupérer la liste des donateurs",
         "tags": ["Personnes"],
         "responses": {
-          "200": { "description": "Liste des personnes récupérée avec succès." }
+          "200": { "description": "Liste des personnes récupérée avec succès." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      },
+      "post": {
+        "summary": "Créer une nouvelle personne",
+        "tags": ["Personnes"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["prenom"],
+                "properties": {
+                  "prenom": { 
+                    "type": "string", 
+                    "description": "Prénom de la personne (obligatoire)" 
+                  },
+                  "nom": { 
+                    "type": "string", 
+                    "description": "Nom de famille (optionnel)" 
+                  },
+                  "telephone": { 
+                    "type": "string", 
+                    "description": "Numéro de téléphone (optionnel)" 
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Personne créée avec succès." },
+          "400": { "description": "Le prénom est obligatoire." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      }
+    },
+    "/api/personnes/{id}": {
+      "get": {
+        "summary": "Récupérer le détail d'une personne par son ID",
+        "tags": ["Personnes"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "integer" },
+            "description": "ID de la personne"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Personne trouvée avec succès." },
+          "404": { "description": "Personne non trouvée." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      }
+    },
+    "/api/objets": {
+      "get": {
+        "summary": "Récupérer la liste des objets (avec filtres optionnels)",
+        "tags": ["Objets"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "statut",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "Filtrer par statut de l'objet (ex: en_rayon, vendu...)"
+          },
+          {
+            "in": "query",
+            "name": "categorie_id",
+            "required": false,
+            "schema": { "type": "integer" },
+            "description": "Filtrer par ID de catégorie"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Liste des objets récupérée avec succès." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      }
+    },
+    "/api/objets/{id}": {
+      "get": {
+        "summary": "Récupérer le détail d'un objet par son ID",
+        "tags": ["Objets"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "integer" },
+            "description": "ID de l'objet"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Objet trouvé avec succès." },
+          "404": { "description": "Objet introuvable." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      }
+    },
+    "/api/categories": {
+      "get": {
+        "summary": "Récupérer la liste de toutes les catégories",
+        "tags": ["Catégories"],
+        "responses": {
+          "200": { "description": "Liste des catégories récupérée avec succès." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      },
+      "post": {
+        "summary": "Créer une nouvelle catégorie",
+        "tags": ["Catégories"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["libelle"],
+                "properties": {
+                  "libelle": { 
+                    "type": "string",
+                    "description": "Nom de la nouvelle catégorie"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Catégorie créée avec succès." },
+          "500": { "description": "Erreur interne du serveur." }
         }
       }
     },
@@ -47,6 +183,43 @@
         }
       }
     },
+
+    "/api/depots": {
+      "get": {
+        "summary": "Récupérer la liste de tous les dépôts",
+        "tags": ["Dépôts"],
+        "responses": {
+          "200": { "description": "Liste des dépôts récupérée avec succès." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      },
+      "post": {
+        "summary": "Enregistrer un nouveau dépôt",
+        "tags": ["Dépôts"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["personne_id"],
+                "properties": {
+                  "personne_id": { "type": "integer", "description": "ID du donateur (obligatoire)" },
+                  "date_depot": { "type": "string", "format": "date" },
+                  "type": { "type": "string", "enum": ["boutique", "domicile"], "default": "boutique" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Dépôt créé avec succès." },
+          "400": { "description": "Données invalides ou manquantes." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      }
+    },
+
     "/api/depots/{id}": {
       "get": {
         "summary": "Récupérer le détail d'un dépôt par son ID",
@@ -103,6 +276,69 @@
           "201": { "description": "Objet ajouté avec succès." },
           "400": { "description": "Champs obligatoires manquants ou invalides." },
           "404": { "description": "Dépôt parent non trouvé." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      }
+    },
+    "/api/stats": {
+      "get": {
+        "summary": "Récupérer la liste des stats",
+        "tags": ["Stats"],
+        "responses": {
+          "200": { "description": "Statistiques récupérées avec succès." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      }
+    },
+    "/api/benevoles": {
+      "get": {
+        "summary": "Récupérer la liste de tous les bénévoles",
+        "tags": ["Bénévoles"],
+        "responses": {
+          "200": { "description": "Liste des bénévoles récupérée avec succès." },
+          "500": { "description": "Erreur interne du serveur." }
+        }
+      }
+    },
+    "/api/objets/{id}/statut": {
+      "patch": {
+        "summary": "Mettre à jour le statut et le prix d'un objet",
+        "tags": ["Objets"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "integer" },
+            "description": "ID de l'objet à modifier"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["statut"],
+                "properties": {
+                  "statut": { 
+                    "type": "string", 
+                    "enum": ["arrive", "en_reparation", "en_rayon", "vendu", "recycle"],
+                    "description": "Nouveau statut de l'objet"
+                  },
+                  "prix": { 
+                    "type": "number",
+                    "description": "Nouveau prix (optionnel)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Statut de l'objet mis à jour." },
+          "400": { "description": "Statut invalide." },
+          "404": { "description": "Objet introuvable." },
           "500": { "description": "Erreur interne du serveur." }
         }
       }
