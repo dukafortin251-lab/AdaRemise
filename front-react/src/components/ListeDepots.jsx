@@ -64,7 +64,7 @@ export default function DepotList() {
       <div className="depot-header">
         <h2>Dépôts</h2>
         <button className="btn-enregistrer" onClick={() => navigate ("/depots/nouveau")}>
-          Enregistrer un nouveau depot
+          Enregistrer un nouveau dépôt
         </button>
       </div>
       
