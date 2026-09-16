@@ -76,7 +76,7 @@ export default function FiltreObjet() {
                 className={statut === "" ? "bouton-actif" : "bouton-normal"}
                 onClick={() => setStatut(statut === "" ? "" : "")}
               >
-                Tout les statuts
+                Tous les statuts
               </button>
               <button
                 className={statut === "arrive" ? "bouton-actif" : "bouton-normal"}
