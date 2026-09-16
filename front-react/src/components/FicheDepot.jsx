@@ -82,9 +82,6 @@ export default function FicheDepot() {
       <Navbar />
       <div className="fiche-depot-page">
         <header className="fiche-header">
-          <button onClick={() => navigate("/depots")} className="btn-retour">
-            Dépôts
-          </button>
         </header>
 
         {erreur && <p className="message-erreur">{erreur}</p>}
@@ -93,6 +90,7 @@ export default function FicheDepot() {
         <div className="fiche-content">
           <aside className="colonne-gauche">
             <div className="info-card">
+              <h3>Informations du dépôt</h3>
               <p><strong>ID:</strong> #{depot.id}</p>
               <p><strong>Donateur:</strong> {depot.prenom} {depot.nom_donateur}</p>
               <p><strong>Date de création:</strong> {depot.date_depot ? new Date(depot.date_depot).toLocaleDateString('fr-FR') : ""}</p>
@@ -101,7 +99,7 @@ export default function FicheDepot() {
             </div>
 
             <div className="elements-card">
-              <h3>Éléments dans ce dépôt</h3>
+              <h3>Objets du dépôt</h3>
               <div className="elements-list">
                 {depot.objets && depot.objets.length > 0 ? (
                   depot.objets.map((obj, index) => (
@@ -116,6 +114,9 @@ export default function FicheDepot() {
 
           <main className="colonne-droite">
             <form className="ajout-objet-form" onSubmit={handleAjoutObjet}>
+              <div className="titre-objet">
+              <h3>Enregistrer un nouvel objet dans le dépôt</h3>
+              </div>
               <div className="form-row">
                 <div className="form-group">
                   <label>Libellé</label>

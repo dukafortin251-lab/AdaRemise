@@ -64,7 +64,7 @@ export default function DepotList() {
       <div className="depot-header">
         <h2>Dépôts</h2>
         <button className="btn-enregistrer" onClick={() => navigate ("/depots/nouveau")}>
-          enregistrer un nouveau depot
+          Enregistrer un nouveau depot
         </button>
       </div>
       
@@ -74,17 +74,14 @@ export default function DepotList() {
         ) : (
           depots?.map((depot) => (
             <article key={depot.id} className="carddepot" onClick={() => navigate (`/depots/${depot.id}`)}>
-              {/* Nom centré en haut */}
               <div className="card-top-section">
                 <h3 className="card-title">
                   {depot.prenom} <br /> {depot.nom_donateur}
                 </h3>
               </div>
               
-              {/* Ligne de séparation */}
               <hr className="card-divider" />
 
-              {/* Informations en dessous (ID et Date) */}
               <div className="card-infos">
                 <div className="card-info-row">
                   <span className="card-label">ID</span>

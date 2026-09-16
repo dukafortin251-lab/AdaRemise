@@ -32,10 +32,8 @@ export default function TableauBord() {
     fetchBord();
   }, []);
 
-  // Cherche uniquement le statut "en_rayon" dans le tableau
   const enRayon = statuts.find((ligne) => ligne.statut === "en_rayon");
 
-  // Trouve la valeur max pour calculer la hauteur des barres en proportion
   const maxTotal = Math.max(...statuts.map((s) => Number(s.total)), 1);
 
   return (

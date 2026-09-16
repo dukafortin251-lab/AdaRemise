@@ -51,14 +51,15 @@ export default function FiltreObjet() {
   };
 
   return (
-    <section>
-      <button
-        className="bouton-filtre"
-        onClick={() => setIsFilterModalOpen(true)}
-      >
-        <img className="filtrePng" src={filtre} alt="image filtre" />
-        Filtres
-      </button>
+    <div className="depot-container">
+      <div className="depot-header">
+        <h2>Inventaire</h2>
+        <button
+          className="bouton-filtre"
+          onClick={() => setIsFilterModalOpen(true)}>
+          Filtres
+        </button>
+      </div>
 
       {isFilterModalOpen && (
         <div
@@ -182,6 +183,7 @@ export default function FiltreObjet() {
       ) : (
         <ListeObjet objets={objet} onCardClick={handleOpenDetails} />
       )}
+
       {isDetailsModalOpen && (
         <ModalObjet 
           item={selectedItem} 
@@ -189,6 +191,6 @@ export default function FiltreObjet() {
           onUpdate={fetchObjets}
         />
       )}
-    </section>
+    </div>
   );
 }

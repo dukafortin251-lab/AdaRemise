@@ -10,7 +10,7 @@ const TableauDeBord = () => {
       <Navbar prenom={prenom} nom={nom} />
       <div className="depot-container">
         <div className="depot-header">
-          <h2>Tableau de bord</h2>
+          <h2 className="titre-dashboard">Tableau de bord</h2>
         </div>
         <DataDashboard />
       </div>
